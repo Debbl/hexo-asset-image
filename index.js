@@ -63,10 +63,11 @@ hexo.extend.filter.register('after_post_render', function(data) {
                             // abbrlink = d6d2f549
                             // src = title/20190522103754.jpg
                             // 或者 src = 20190522103754.jpg
-                            if (src.indexOf('/') > -1) {
-                              src = src.substring(src.lastIndexOf('/') + 1);
-                            }
-                            $(this).attr('src', root + link + abbrlink + '/' + src);
+                            // if (src.indexOf('/') > -1) {
+                            //     src = src.substring(src.lastIndexOf('/') + 1);
+                            // }
+                            src = src.split(srcArray[1])[1];
+                            $(this).attr('src', root + link + abbrlink + src);
                         }
                     } else {
                         $(this).attr('src', root + link + src);
