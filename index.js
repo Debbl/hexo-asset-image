@@ -18,7 +18,7 @@ hexo.extend.filter.register('after_post_render', function (data) {
     // In hexo 3.1.1, the permalink of "about" page is like ".../about/index.html".
     var endPos = link.lastIndexOf('/') + 1;
     link = link.substring(beginPos, endPos);
-
+    var abbrlink = data.abbrlink ?? false;
     var toprocess = ['excerpt', 'more', 'content'];
     for (var i = 0; i < toprocess.length; i++) {
       var key = toprocess[i];
@@ -29,6 +29,27 @@ hexo.extend.filter.register('after_post_render', function (data) {
         lowerCaseTags: false,
         decodeEntities: false,
       });
+
+      // console.log(abbrlink, "OK", data.title);
+      if (abbrlink) {
+        // console.log(data.top_img);
+        if (!reUrl.test(data.cover ?? "")) {
+          // console.log("OK",data.cover);
+          data.cover = data.cover.replace(
+            './' + decodeURI(data.cover.split('/')[1]),
+            link + abbrlink
+          );
+          // console.log("OK",data.cover);
+        }
+        if (!reUrl.test(data.top_img ?? "")) {
+          // console.log("OK",data.top_img);
+          data.top_img = data.cover.replace(
+            './' + decodeURI(data.top_img.split('/')[1]),
+            link + abbrlink
+          );
+          // console.log("OK",data.top_img);
+        }
+      }
 
       // console.log($('img'), '-------');
       $('img').each(function () {
@@ -48,25 +69,7 @@ hexo.extend.filter.register('after_post_render', function (data) {
 
           var root =
             config.root && config.root.endsWith('/') ? config.root : '/';
-
-          var abbrlink = data.abbrlink;
           if (abbrlink) {
-            if (!reUrl.test(data.cover)) {
-              // console.log("OK",data.cover);
-              data.cover = data.cover.replace(
-                './' + decodeURI(srcArray[1]),
-                link + abbrlink
-              );
-              // console.log("OK",data.cover);
-            }
-            if (!reUrl.test(data.top_img)) {
-              // console.log("OK",data.top_img);
-              data.top_img = data.cover.replace(
-                './' + decodeURI(srcArray[1]),
-                link + abbrlink
-              );
-              // console.log("OK",data.top_img);
-            }
             if (src.indexOf(abbrlink) > -1) {
               // 使用 hexo asset_img：{% asset_img 20190522103754.jpg %}
               $(this).attr('src', root + link + src);

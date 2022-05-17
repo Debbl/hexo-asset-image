@@ -1,6 +1,6 @@
 {
   "name": "@debbl/hexo-asset-image",
-  "version": "0.1.2",
+  "version": "0.1.3",
   "description": "Give asset image in hexo a absolutely path automatically",
   "main": "index.js",
   "repository": "https://github.com/Debbl/hexo-asset-image",
