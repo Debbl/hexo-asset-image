@@ -1,5 +1,5 @@
 {
-  "name": "hexo-asset-image",
+  "name": "@debbl/hexo-asset-image",
   "version": "0.1.0",
   "description": "Give asset image in hexo a absolutely path automatically",
   "main": "index.js",

@@ -28,7 +28,7 @@ abbrlink:
 
 ```shell
 MacGesture2-Publish
-├── apppicker.jpg
+├── images/apppicker.jpg
 ├── logo.jpg
 └── rules.jpg
 MacGesture2-Publish.md
@@ -38,4 +38,6 @@ MacGesture2-Publish.md
 
 Make sure `post_asset_folder: true` in your `_config.yml`.
 
-Just use `![logo](logo.jpg)` Or `![logo](MacGesture2-Publish/logo.jpg)` Or `![logo](D:/MacGesture2-Publish/logo.jpg)` Or `{% asset_img logo.jpg %}` to insert `logo.jpg`
+```
+![](./MacGesture2-Publish/images/logo.jpg)
+```
